@@ -1,2 +1,5 @@
 .sass-cache/
 *.css.map
+*.css
+brewerydb.env
+/node_modules
