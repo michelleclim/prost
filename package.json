@@ -1,0 +1,20 @@
+{
+  "name": "prost",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michelleclim/prost.git"
+  },
+  "scripts": {},
+  "author": "Michelle Lim",
+  "bugs": {
+    "url": "https://github.com/michelleclim/prost/issues"
+  },
+  "dependencies": {
+      "express": "^4.4.2",
+      "brewerydb-node": "^4.4.2"
+  },
+  "homepage": "https://github.com/michelleclim/prost"
+}
