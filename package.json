@@ -13,8 +13,8 @@
     "url": "https://github.com/michelleclim/prost/issues"
   },
   "dependencies": {
-      "express": "^4.4.2",
-      "brewerydb-node": "^4.4.2"
+      "express": "^4.14.0",
+      "brewerydb-node": "^0.0.1"
   },
   "homepage": "https://github.com/michelleclim/prost"
 }
