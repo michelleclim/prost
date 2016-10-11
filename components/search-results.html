@@ -1,8 +1,17 @@
-<article ng-repeat="result in $ctrl.results">
+<article class="result" ng-repeat="result in $ctrl.results">
+	<img ng-src="{{result.labels.medium}}">
 	<div>
-		{{result.name}}
-		{{result.description}}
-		{{result.style.name}}
+		<h2>{{result.name}}</h2>
+		<p>{{result.description}}</p>
+		<p>{{result.style.name}}</p>
 	</div>
 	<div class="abv">{{result.abv}}</div>
+
+	<div>
+	{{result.style.name}}
+	{{result.style.description}}
+	SRM: {{result.style.srmMin}}-{{result.style.srmMax}}
+	IBU: {{result.style.ibuMin}}-{{result.style.ibuMax}}
+	ABV: {{result.style.abvMin}}-{{result.style.abvMax}}
+	</div>
 </article>
