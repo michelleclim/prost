@@ -4,29 +4,9 @@
 
 	var app = angular.module('prost-app', []);
 
-	app.component('search', {
-		templateUrl: 'components/search.html',
-		controller: ['$http', function($http){
-			var self = this;
-			self.submit = submit;
-			self.query = '';
-
-			function submit(query) {
-				console.log(query);
-				$http.get('/search?q=' + query)
-					.then(function(response){
-						console.log(response.data);
-					});
-			}
-		}]
-	});
-
-	app.component('searchResults', {
-		templateUrl: 'components/search-results.html',
-		controller: [function(){
-			var self = this;
-
-			self.results = [{
+	app.service('resultService', function(){
+		var results = {
+			list: [{
 				"id": "jMGNSh",
 				"name": "stella",
 				"nameDisplay": "stella",
@@ -260,8 +240,53 @@
 					"updateDate": "2015-04-07 15:27:26"
 				},
 				"type": "beer"
-			}];
+			}],
+			detail: ''
+		}
 
+		return results;
+	});
+
+	app.component('search', {
+		templateUrl: 'components/search.html',
+		controller: ['$http', 'resultService', function($http, resultService){
+			var self = this;
+			self.results = resultService;
+			self.submit = submit;
+			self.query = '';
+
+			function submit(query) {
+				console.log(query);
+				$http.get('/search?q=' + query)
+					.then(function(response){
+						self.results.list = response.data;
+						console.log(response.data);
+					});
+			}
 		}]
-	})
+	});
+
+	app.component('searchResults', {
+		templateUrl: 'components/search-results.html',
+		controller: ['resultService', function(resultService){
+			var self = this;
+			self.results = resultService;
+
+			self.viewDetail = viewDetail;
+
+			function viewDetail(index) {
+				self.results.detail = self.results.list[index];
+				console.log(self.results.detail);
+				//change state to result-detail
+			}
+		}]
+	});
+
+	app.component('resultDetail', {
+		templateUrl: 'result-detail.html',
+		controller: ['resultService', function(resultService){
+			var self = this;
+			self.result = resultService.results.detail;
+		}]
+	});
 })(angular);

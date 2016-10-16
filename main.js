@@ -16,6 +16,12 @@ var brewerydb_api_key = function(){
 
 var brewdb = new BreweryDb(brewerydb_api_key());
 
+app.get('/', function(req,res){
+	res.send('hello world');
+});
+
+app.use(express.static(__dirname));
+
 var server = app.listen(port, function(){
 	var host = server.address().address;
 	var port = server.address().port;
