@@ -1,14 +1,14 @@
-<h1>{{result.name}}</h1>
-<img ng-src="result.labels.medium">
-<p class="description">{{result.description}}</p>
-<div ng-if="result.abv">ABV: {{result.abv}}%</div>
-<div ng-if="result.ibu">IBU: {{result.ibu}}</div>
-<div ng-if="result.style" class="style">
-	<div class="name">{{result.style.name}}</div>
+<h1>{{$ctrl.result.name}}</h1>
+<img ng-src="{{$ctrl.result.labels.medium}}">
+<p class="description">{{$ctrl.result.description}}</p>
+<div ng-if="$ctrl.result.abv">ABV: {{$ctrl.result.abv}}%</div>
+<div ng-if="$ctrl.result.ibu">IBU: {{$ctrl.result.ibu}}</div>
+<div ng-if="$ctrl.result.style" class="style">
+	<div class="name">{{$ctrl.result.style.name}}</div>
 	<div class="info">
-		<p>{{result.style.description}}</p>
-		<div>SRM: {{result.style.srmMin}}-{{result.style.srmMax}}</div>
-		<div ng-if="result.style.ibuMin">IBU: {{result.style.ibuMin}}-{{result.style.ibuMax}}</div>
-		<div ng-if="result.style.abvMin">ABV: {{result.style.abvMin}}-{{result.style.abvMax}}%</div>
+		<p>{{$ctrl.result.style.description}}</p>
+		<div ng-if="$ctrl.result.style.srmMin">SRM: {{$ctrl.result.style.srmMin}}-{{$ctrl.result.style.srmMax}}</div>
+		<div ng-if="$ctrl.result.style.ibuMin">IBU: {{$ctrl.result.style.ibuMin}}-{{$ctrl.result.style.ibuMax}}</div>
+		<div ng-if="$ctrl.result.style.abvMin">ABV: {{$ctrl.result.style.abvMin}}-{{$ctrl.result.style.abvMax}}%</div>
 	</div>
 </div>

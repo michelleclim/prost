@@ -2,7 +2,22 @@
 
 	'use strict';
 
-	var app = angular.module('prost-app', []);
+	var app = angular.module('prost-app', ['ui.router']);
+
+	app.config(function($stateProvider){
+		var resultsState = {
+			name: 'results',
+			url: '/results',
+			template: '<search-results></search-results>'
+		}
+		var detailState = {
+			name: 'detail',
+			url: '/detail',
+			template: '<result-detail></result-detail>'
+		}
+		$stateProvider.state(resultsState);
+		$stateProvider.state(detailState);
+	});
 
 	app.service('resultService', function(){
 		var results = {
@@ -249,7 +264,7 @@
 
 	app.component('search', {
 		templateUrl: 'components/search.html',
-		controller: ['$http', 'resultService', function($http, resultService){
+		controller: ['$http', '$state', 'resultService', function($http, $state, resultService){
 			var self = this;
 			self.results = resultService;
 			self.submit = submit;
@@ -260,7 +275,11 @@
 				$http.get('/search?q=' + query)
 					.then(function(response){
 						self.results.list = response.data;
+						$state.go('results');
 						console.log(response.data);
+					}, function(){
+						// this will change to error log
+						$state.go('results');
 					});
 			}
 		}]
@@ -268,7 +287,7 @@
 
 	app.component('searchResults', {
 		templateUrl: 'components/search-results.html',
-		controller: ['resultService', function(resultService){
+		controller: ['resultService', '$state', function(resultService, $state){
 			var self = this;
 			self.results = resultService;
 
@@ -277,16 +296,16 @@
 			function viewDetail(index) {
 				self.results.detail = self.results.list[index];
 				console.log(self.results.detail);
-				//change state to result-detail
+				$state.go('detail');
 			}
 		}]
 	});
 
 	app.component('resultDetail', {
-		templateUrl: 'result-detail.html',
+		templateUrl: 'components/result-detail.html',
 		controller: ['resultService', function(resultService){
 			var self = this;
-			self.result = resultService.results.detail;
+			self.result = resultService.detail;
 		}]
 	});
 })(angular);
