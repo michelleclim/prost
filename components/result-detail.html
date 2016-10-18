@@ -4,7 +4,7 @@
 <div ng-if="$ctrl.result.abv">ABV: {{$ctrl.result.abv}}%</div>
 <div ng-if="$ctrl.result.ibu">IBU: {{$ctrl.result.ibu}}</div>
 <div ng-if="$ctrl.result.style" class="style">
-	<div class="name">{{$ctrl.result.style.name}}</div>
+	<div class="name">Category: {{$ctrl.result.style.name}}</div>
 	<div class="info">
 		<p>{{$ctrl.result.style.description}}</p>
 		<div ng-if="$ctrl.result.style.srmMin">SRM: {{$ctrl.result.style.srmMin}}-{{$ctrl.result.style.srmMax}}</div>

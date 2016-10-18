@@ -1,9 +1,9 @@
+<h2>{{$ctrl.results.list.length}} Results Found</h2>
 <article class="result" ng-repeat="result in $ctrl.results.list" ng-click="$ctrl.viewDetail($index)">
 	<img ng-src="{{result.labels.medium}}">
-	<div>
+	<div class="info">
 		<h2>{{result.name}}</h2>
-		<p>{{result.description}}</p>
 		<p>{{result.style.name}}</p>
+		<div class="abv" ng-if="result.abv">ABV: {{result.abv}}%</div>
 	</div>
-	<div class="abv" ng-if="result.abv">ABV: {{result.abv}}%</div>
 </article>
